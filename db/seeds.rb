@@ -9,3 +9,5 @@
 
 User.create(username: "Maass")
 City.create(name: "Austin", state: "Texas", description: "wierd", user_id: 1 )
+City.create(name: "Fort Collins", state: "Colorado", description: "cool", user_id: 1 )
+City.create(name: "Dallas", state: "Texas", description: "lame", user_id: 1 )

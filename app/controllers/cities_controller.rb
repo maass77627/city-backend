@@ -1,4 +1,6 @@
 class CitiesController < ApplicationController
+    skip_before_action :verify_authenticity_token
+    
 
     def index 
         @cities = City.all
@@ -11,13 +13,16 @@ class CitiesController < ApplicationController
     end
 
     def create
-       @city = City.new(city_params)
-       if @city.save
+        # binding.pry
+        
+       @city = City.create(city_params)
+       if @city
         render json: @city
        else 
-        render json: {errors: 'Error creating account'}
-       end
-    end 
+       render json: {errors: 'Error creating city'}
+        
+        end 
+    end
 
     def show
         @city = City.find(params[:id])
@@ -35,7 +40,7 @@ class CitiesController < ApplicationController
     private 
 
    def city_params
-    params.require(:city).permit(:name, :state, :user_id, :description)
+    params.require(:city).permit(:name, :state, :description)
 
    end
 end
